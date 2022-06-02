@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.d3xsystems</groupId>
+  <artifactId>d3x-osqp</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+
+  <name>d3x-osqp</name>
+  <description>Java/JNI adapter for the OSQP solver</description>
+  <inceptionYear>2022</inceptionYear>
+
+  <developers>
+    <developer>
+      <id>jsshaff@berkeley.edu</id>
+      <name>Scott Shaffer</name>
+      <email>scott@d3xsystems.com</email>
+      <timezone>Americas/Los_Angeles</timezone>
+    </developer>
+  </developers>
+
+  <organization>
+    <name>D3X Systems</name>
+    <url>https://www.d3xsystems.com</url>
+  </organization>
+
+  <scm>
+    <url>https://github.com/d3xsystems/d3x-osqp.git</url>
+    <connection>scm:git:https://github.com/d3xsystems/d3x-osqp.git</connection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <name>d3xsystems-artifactory-primary-0-releases</name>
+      <url>https://d3xsystems.jfrog.io/artifactory/d3x-release</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>d3xsystems-artifactory-primary-0-snapshots</name>
+      <url>https://d3xsystems.jfrog.io/artifactory/d3x-snapshot</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+
+  <properties>
+    <jdk.version>11</jdk.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>31.1-jre</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.36</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.5</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion> <!-- Excluded due to CVE -->
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+        </exclusion>
+        <exclusion> <!-- Excluded due to CVE -->
+          <groupId>org.yaml</groupId>
+          <artifactId>snakeyaml</artifactId>
+        </exclusion>
+        <exclusion> <!-- Excluded due to CVE -->
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+        </exclusion>
+        <exclusion>
+          <artifactId>slf4j-api</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+    </pluginManagement>
+    <defaultGoal>clean install</defaultGoal>
+  </build>
+</project>
