@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.d3xsystems</groupId>
   <artifactId>d3x-osqp</artifactId>
-  <version>1.0</version>
+  <version>1.0.1</version>
   <packaging>pom</packaging>
 
   <name>d3x-osqp</name>
@@ -65,19 +65,18 @@
       <artifactId>guava</artifactId>
       <version>31.1-jre</version>
     </dependency>
-
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>1.7.36</version>
+      <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>1.7.5</version>
+      <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
@@ -95,10 +94,6 @@
         <exclusion> <!-- Excluded due to CVE -->
           <groupId>com.google.guava</groupId>
           <artifactId>guava</artifactId>
-        </exclusion>
-        <exclusion>
-          <artifactId>slf4j-api</artifactId>
-          <groupId>org.slf4j</groupId>
         </exclusion>
       </exclusions>
     </dependency>
