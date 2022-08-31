@@ -15,11 +15,29 @@
 # permissions and limitations under the License.
 ########################################################################
 
-if [ $# -eq 1 ]
+if [ $# -lt 2 ]
 then
-    OSQP_DIR=$1
+    echo "Usage: `basename $0` <OSQP_DIR> <D3X_OSQP_DIR> [<JAVA_HOME>]"
+    exit 1
 else
-    echo "Usage: `basename $0` <OSQP_DIR>"
+    OSQP_DIR=$1
+    D3X_OSQP_DIR=$2
+fi
+
+if [ -z "$JAVA_HOME" ]
+then
+    JAVA_HOME=$3
+
+    if [ -z "$JAVA_HOME" ]
+    then
+        echo "JAVA_HOME must be defined; exiting."
+        exit 1
+    fi
+fi
+
+if [ ! -f ${OSQP_DIR}/lib/libosqp.a ]
+then
+    echo "OSQP is not installed under ${OSQP_DIR}; exiting."
     exit 1
 fi
 
@@ -29,25 +47,25 @@ then
     exit 1
 fi
 
-# The directory where the d3x-osqp runtime library will be installed;
-# change as desired.  By default the library will be installed in the
-# same directory as the OSQP libraries.
-D3X_LIBDIR=${OSQP_DIR}/lib
-
-# The name of the runtime library; do not change.
+D3X_LIBDIR=${D3X_OSQP_DIR}/lib
 D3X_LIBNAME=d3x-osqp
 
-if [ -z "$JAVA_HOME" ]
+if [ ! -d $D3X_LIBDIR ]
 then
-    echo "JAVA_HOME must be defined; exiting."
-    exit 1
+    mkdir -p $D3X_LIBDIR
+
+    if [ ! -d $D3X_LIBDIR ]
+    then
+        echo "Failed to create directory $D3X_LIBDIR; exiting."
+        exit 1
+    fi
 fi
 
 UNAME=`uname`
 
 CC=gcc
 CFLAGS="-c -fPIC -Wno-incompatible-pointer-types"
-LFLAGS="-L${OSQP_DIR}/lib"
+LFLAGS="-L${D3X_LIBDIR}"
 
 SRCDIR=`dirname $0`/../src/main/C
 SRCFILE=${SRCDIR}/com_d3x_osqp_OsqpModel.c
