@@ -53,6 +53,10 @@
   </licenses>
 
   <properties>
+    <osqp.version>0.6.2</osqp.version>
+    <osqp.libdir>/opt/osqp/${osqp.version}/lib</osqp.libdir>
+    <d3x.osqp.libdir>/opt/d3x-osqp/${version}/lib</d3x.osqp.libdir>
+
     <jdk.version>11</jdk.version>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
@@ -106,7 +110,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0-M7</version>
         <configuration>
-          <argLine>-Djava.library.path=/usr/local/lib</argLine>
+          <argLine>-Djava.library.path=${osqp.libdir}:${d3x.osqp.libdir}</argLine>
         </configuration>
         <dependencies>
           <dependency>
