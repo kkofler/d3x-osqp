@@ -65,7 +65,7 @@ UNAME=`uname`
 
 CC=gcc
 CFLAGS="-c -fPIC -Wno-incompatible-pointer-types"
-LFLAGS="-L${D3X_LIBDIR}"
+LFLAGS="-L${OSQP_DIR}/lib"
 
 SRCDIR=`dirname $0`/../src/main/C
 SRCFILE=${SRCDIR}/com_d3x_osqp_OsqpModel.c
@@ -76,7 +76,7 @@ then
     mkdir -p $D3X_LIBDIR
 fi
 
-if [ $UNAME == "Darwin" ]
+if [ $UNAME = "Darwin" ]
 then
     IFLAGS="-I${JAVA_HOME}/include -I${JAVA_HOME}/include/darwin -I${OSQP_DIR}/include/osqp -I$SRCDIR"
     SHARED="-dynamiclib"
