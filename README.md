@@ -33,7 +33,8 @@ The script takes two required arguments and a third optional argument. The
 first is the OSQP installation directory, the second is the `d3x-osqp`
 installation directory, and the third is the Java home directory.  If the
 third argument is omitted, it will default to the value of the `JAVA_HOME`
-environment variable.
+environment variable. You may need to run the script using `sudo` if the
+installation directory is write-protected.
 
 When the script runs successfully, you should see the message
 ```
