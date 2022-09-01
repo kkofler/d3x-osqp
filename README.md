@@ -10,7 +10,14 @@ Follow these steps to download and build the adapter.
 git clone --recursive https://github.com/d3xsystems/osqp
 ```
 
-2. Compile and install OSQP as described at [**osqp.org**](https://osqp.org/).
+2. Run the build script:
+```
+cd osqp
+./install.sh /opt/osqp/0.6.2
+```
+The script takes a single argument which must be the location where the OSQP
+libraries and header files will be installed. You may need to run the script
+using `sudo` if the installation directory is write-protected.
    
 3. Download the `d3x-osqp` sources:
 ```
@@ -20,19 +27,22 @@ git clone git@github.com:d3xsystems/d3x-osqp.git
 4. Run the custom build script to compile the native C runtime library:
 ```
 cd d3x-osqp
-bin/build.sh /usr/local
+bin/build.sh /opt/osqp/0.6.2 /opt/d3x-osqp/1.0.1 /usr/lib/jvm/java11
 ```
-The script takes a single argument which must be the location where OSQP has been
-installed.  (If `$1` is the argument to the build script, then the OSQP header files
-must be present in `$1/include/osqp` and the OSQP runtime library must be present in
-`$1/lib`.)  The `d3x-osqp` runtime library will be installed in the `lib` directory
-under that parent.  When it runs successfully, you should see the message
+The script takes two required arguments and a third optional argument. The
+first is the OSQP installation directory, the second is the `d3x-osqp`
+installation directory, and the third is the Java home directory.  If the
+third argument is omitted, it will default to the value of the `JAVA_HOME`
+environment variable. You may need to run the script using `sudo` if the
+installation directory is write-protected.
+
+When the script runs successfully, you should see the message
 ```
-Generated library: /usr/local/lib/libd3x-osqp.so
+Generated library: /opt/d3x-osqp/1.0.1/lib/libd3x-osqp.so
 ```
 on Linux, or
 ```
-Generated library: /usr/local/lib/libd3x-osqp.dylib
+Generated library: /opt/d3x-osqp/1.0.1/lib/libd3x-osqp.dylib
 ```
 on Mac OSX.
 
